@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: The Wager - Around the World in 80 Days (Final with Video)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --slide-paper: #f4f1ea;
+            --ink-primary: #2c2c2c;
+            --ink-secondary: #4a4a4a;
+            --accent-red: #8a1c1c; 
+            --accent-gold: #c5a059;
+            
+            --font-display: 'Playfair Display', serif;
+            --font-detail: 'Cinzel', serif; 
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #000;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            overflow: hidden;
+        }
+
+        /* --- 2. STAGE --- */
+        #stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1366px; 
+            max-height: 768px;
+            background-color: var(--slide-paper);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+            border: 1px solid #333;
+            /* Subtle Texture */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23c5a059' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* --- 3. SLIDES --- */
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: scale(0.98);
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        /* --- 4. TYPOGRAPHY --- */
+        h1 { font-family: var(--font-display); font-size: 4rem; color: var(--ink-primary); margin-bottom: 20px; text-align: center; }
+        h2 { font-family: var(--font-detail); font-size: 2rem; color: var(--accent-red); border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+        p, li { font-size: 1.3rem; line-height: 1.6; color: var(--ink-secondary); margin-bottom: 15px; }
+
+        /* --- 5. CONTENT LAYOUTS --- */
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; height: 80%; align-items: center; }
+        .excerpt-box { padding: 30px; background: #fff; border: 1px solid #ddd; border-left: 6px solid var(--accent-gold); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .dialogue-box { background: #e8e4db; padding: 20px; border-left: 4px solid var(--accent-red); margin-bottom: 20px; font-style: italic; }
+        .speaker { font-family: var(--font-detail); font-weight: bold; color: var(--ink-primary); display: block; margin-bottom: 5px; font-size: 0.9rem; font-style: normal; }
+        
+        /* Video Container Styling */
+        .video-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            border: 4px solid var(--accent-red);
+        }
+        .video-container video {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+
+        /* --- 6. TABLE STYLES --- */
+        table { width: 100%; border-collapse: collapse; font-size: 1.2rem; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        th { background: var(--accent-gold); color: white; padding: 15px; text-transform: uppercase; font-family: var(--font-detail); }
+        td { padding: 12px; border: 1px solid #ddd; }
+        tr.total-row { background: #eee; font-weight: bold; color: var(--accent-red); }
+
+        /* --- 7. THANK YOU PAGE STYLES --- */
+        .thank-you-container {
+            border: 8px double var(--ink-primary);
+            padding: 80px;
+            text-align: center;
+            background: #fff;
+            position: relative;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .thank-you-container::before {
+            content: "✦";
+            position: absolute;
+            top: -25px; left: 50%; transform: translateX(-50%);
+            font-size: 3rem; color: var(--accent-gold); background: var(--slide-paper); padding: 0 20px;
+        }
+
+        .thank-you-container::after {
+            content: "✦";
+            position: absolute;
+            bottom: -25px; left: 50%; transform: translateX(-50%);
+            font-size: 3rem; color: var(--accent-gold); background: var(--slide-paper); padding: 0 20px;
+        }
+        
+        /* --- 8. QUESTION STYLES --- */
+        .question-slide {
+            padding-top: 60px;
+            justify-content: flex-start;
+        }
+        .question-box {
+            background: var(--accent-red);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 90%;
+            width: 100%;
+            margin: 40px auto 0;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .question-box p {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            line-height: 1.4;
+            color: white;
+            margin: 0;
+        }
+        .answer-box {
+            border: 4px solid var(--accent-gold);
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 90%;
+            width: 100%;
+            margin: 40px auto 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .answer-box p {
+            font-family: var(--font-body);
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--ink-primary);
+            margin: 0;
+        }
+        .answer-label {
+            font-family: var(--font-detail);
+            font-size: 1rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- 9. CONTROLS --- */
+        .main-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            z-index: 100;
+        }
+        .nav-btn {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .nav-btn:hover { background-color: #a02323; transform: translateY(-2px); }
+
+    </style>
+</head>
+<body>
+
+<div id="stage">
+    
+    <div class="main-controls">
+        <button class="nav-btn" onclick="prevSlide()">&#8592; Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next &#8594;</button>
+    </div>
+
+    <div class="slide active">
+        <div style="border: 4px double var(--accent-gold); padding: 60px; text-align: center;">
+            <p style="font-family: var(--font-detail); letter-spacing: 4px; color: var(--accent-red);">JULES VERNE</p>
+            <h1>Around the World<br>in Eighty Days</h1>
+            <div style="width: 100px; height: 4px; background: var(--ink-primary); margin: 20px auto;"></div>
+            <h2 style="border: none; margin-top: 20px;">Chapter III: The Wager</h2>
+            <p>"In which a conversation takes place which seems likely to cost Phileas Fogg dear"</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>The Impeccable Routine</h2>
+        <div class="split-layout">
+            <div class="excerpt-box">
+                <span class="speaker">The Text</span>
+                <p>He reached the **Reform Club**... His breakfast consisted of a side-dish, a **broiled fish with Reading sauce**, a scarlet slice of roast beef... and a rhubarb and gooseberry tart.</p>
+                <div class="dialogue-box" style="margin-top: 20px;">
+                    <span class="speaker">Observation</span>
+                    Fogg's life is defined by mathematical precision. He reads *The Times* and *The Standard* for hours, interacting with no one until dinner.
+                </div>
+            </div>
+            <div class="video-container">
+                <video controls style="width: 100%; height: auto;">
+                    <source src="presentation.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>The £55,000 Scandal</h2>
+        <div class="split-layout">
+            <div>
+                <p>At 5:40 PM, Fogg joins his usual whist partners. The topic is the brazen theft at the **Bank of England**.</p>
+                <ul style="margin-left: 20px; font-size: 1.2rem; margin-top: 20px;">
+                    <li>**Amount:** £55,000 in banknotes</li>
+                    <li>**Thief:** Described as a "gentleman"</li>
+                    <li>**Reward:** £2,000 + 5% of recovery</li>
+                </ul>
+            </div>
+            <div class="excerpt-box">
+                <span class="speaker">Daily Telegraph</span>
+                <p>"The thief is not a robber... the description given... fits that of a well-dressed gentleman."</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>"The World Has Grown Smaller"</h2>
+        <div style="text-align: center; max-width: 800px;">
+            <div class="dialogue-box">
+                <span class="speaker">Andrew Stuart</span>
+                "The world is big enough for the thief to hide."
+            </div>
+            <h1 style="font-size: 3rem; margin: 40px 0; color: var(--accent-red);">"It was once."</h1>
+            <div class="dialogue-box">
+                <span class="speaker">Phileas Fogg</span>
+                "You can now go round it in ten times eighty days... **In eighty days.**"
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>The Calculation</h2>
+        <table>
+            <tr><th>Route</th><th>Mode</th><th>Duration</th></tr>
+            <tr><td>London to Suez</td><td>Rail & Steamer</td><td>7 days</td></tr>
+            <tr><td>Suez to Bombay</td><td>Steamer</td><td>13 days</td></tr>
+            <tr><td>Bombay to Calcutta</td><td>Rail</td><td>3 days</td></tr>
+            <tr><td>Calcutta to Hong Kong</td><td>Steamer</td><td>13 days</td></tr>
+            <tr><td>Hong Kong to Yokohama</td><td>Steamer</td><td>6 days</td></tr>
+            <tr><td>Yokohama to San Francisco</td><td>Steamer</td><td>22 days</td></tr>
+            <tr><td>San Francisco to New York</td><td>Rail</td><td>7 days</td></tr>
+            <tr><td>New York to London</td><td>Steamer & Rail</td><td>9 days</td></tr>
+            <tr class="total-row"><td>TOTAL</td><td></td><td>80 DAYS</td></tr>
+        </table>
+    </div>
+
+    <div class="slide">
+        <h2>The Wager is Accepted</h2>
+        <div class="split-layout">
+            <div class="excerpt-box">
+                <span class="speaker">The Bet</span>
+                <p>**Stuart:** "I’ll wager four thousand pounds that such a journey... is impossible."</p>
+                <p>**Fogg:** "I have a deposit of **twenty thousand** at Baring’s which I will willingly risk upon it."</p>
+            </div>
+            <div>
+                <p>Stuart lists obstacles: *winds, bad weather, shipwrecks*.</p>
+                <p>Fogg replies simply: **"All included."**</p>
+                <div style="margin-top: 30px; background: var(--accent-red); color: white; padding: 20px; text-align: center; border-radius: 4px;">
+                    <p style="color:white; margin:0; font-family: var(--font-detail);">TOTAL STAKES: £24,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide">
+        <div style="text-align: center; max-width: 800px;">
+            <p style="font-family: var(--font-detail); letter-spacing: 4px; color: var(--accent-gold); margin-bottom: 5px; font-size: 1.2rem;">KNOWLEDGE CHECK</p>
+            <h1 style="color: var(--ink-primary); margin-bottom: 10px; font-size: 4rem;">Review Questions</h1>
+            <div style="width: 150px; height: 3px; background: var(--accent-red); margin: 20px auto;"></div>
+            <p style="font-family: var(--font-body); font-size: 1.5rem; color: var(--ink-secondary); margin-top: 30px;">
+                Test your memory of Chapter III: The Wager.
+            </p>
+        </div>
+    </div>
+
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 1 / 46</h2>
+        <div class="question-box">
+            <p>What is the name of the club Phileas Fogg belongs to?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 1 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What is the name of the club Phileas Fogg belongs to?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>The Reform Club.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 2 / 46</h2>
+        <div class="question-box">
+            <p>On which street is the Reform Club located?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 2 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>On which street is the Reform Club located?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Pall Mall.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 3 / 46</h2>
+        <div class="question-box">
+            <p>What meal did Phileas Fogg have upon arriving at the Reform Club at half-past eleven?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 3 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What meal did Phileas Fogg have upon arriving at the Reform Club at half-past eleven?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>His breakfast.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 4 / 46</h2>
+        <div class="question-box">
+            <p>List the components of Phileas Fogg's breakfast at the club.</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 4 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>List the components of Phileas Fogg's breakfast at the club.</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>A side-dish, a broiled fish with Reading sauce, a slice of roast beef with mushrooms, a rhubarb and gooseberry tart, and Cheshire cheese.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 5 / 46</h2>
+        <div class="question-box">
+            <p>After breakfast, what newspaper did a flunkey hand to Phileas Fogg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 5 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>After breakfast, what newspaper did a flunkey hand to Phileas Fogg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>An uncut Times.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 6 / 46</h2>
+        <div class="question-box">
+            <p>Until what time did the perusal of the Times absorb Phileas Fogg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 6 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Until what time did the perusal of the Times absorb Phileas Fogg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>A quarter before four.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 7 / 46</h2>
+        <div class="question-box">
+            <p>After reading the Times, which newspaper did Mr. Fogg read until dinner?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 7 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>After reading the Times, which newspaper did Mr. Fogg read until dinner?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>The Standard.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 8 / 46</h2>
+        <div class="question-box">
+            <p>Who were Phileas Fogg's usual partners at the card game whist?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 8 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Who were Phileas Fogg's usual partners at the card game whist?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Andrew Stuart, John Sullivan, Samuel Fallentin, Thomas Flanagan, and Gauthier Ralph.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 9 / 46</h2>
+        <div class="question-box">
+            <p>What was the profession of Andrew Stuart?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 9 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the profession of Andrew Stuart?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>He was an engineer.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 10 / 46</h2>
+        <div class="question-box">
+            <p>What was the profession of Gauthier Ralph?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 10 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the profession of Gauthier Ralph?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>He was one of the Directors of the Bank of England.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 11 / 46</h2>
+        <div class="question-box">
+            <p>The conversation among the whist players turned to a recent robbery at which institution?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 11 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The conversation among the whist players turned to a recent robbery at which institution?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>The Bank of England.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 12 / 46</h2>
+        <div class="question-box">
+            <p>How much money was stolen from the Bank of England?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 12 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>How much money was stolen from the Bank of England?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Fifty-five thousand pounds in bank-notes.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 13 / 46</h2>
+        <div class="question-box">
+            <p>According to the Daily Telegraph, the person who stole the money was described not as a robber, but as a _____.</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 13 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>According to the Daily Telegraph, the person who stole the money was described not as a robber, but as a _____.</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>gentleman</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 14 / 46</h2>
+        <div class="question-box">
+            <p>From where exactly was the package of bank-notes taken inside the Bank of England?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 14 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>From where exactly was the package of bank-notes taken inside the Bank of England?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>From the principal cashier's table.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 15 / 46</h2>
+        <div class="question-box">
+            <p>What reward was offered for the capture of the bank robber, according to the papers?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 15 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What reward was offered for the capture of the bank robber, according to the papers?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Two thousand pounds, and five per cent. on the sum recovered.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 16 / 46</h2>
+        <div class="question-box">
+            <p>The thief was believed to be a _____ man, about forty years of age.</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 16 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The thief was believed to be a _____ man, about forty years of age.</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>well-dressed</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 17 / 46</h2>
+        <div class="question-box">
+            <p>The robbery occurred on what date?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 17 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The robbery occurred on what date?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>September 29th, 1872.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 18 / 46</h2>
+        <div class="question-box">
+            <p>Why did Andrew Stuart believe the thief would escape?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 18 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Why did Andrew Stuart believe the thief would escape?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Because the world is big enough for him to hide.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 19 / 46</h2>
+        <div class="question-box">
+            <p>Fogg's response to Stuart's comment was a calm declaration of what truth?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 19 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Fogg's response to Stuart's comment was a calm declaration of what truth?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>It was once. (meaning, the world is smaller now due to modern travel)</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 20 / 46</h2>
+        <div class="question-box">
+            <p>In how many days did Phileas Fogg state it was possible to go around the world?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 20 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>In how many days did Phileas Fogg state it was possible to go around the world?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Eighty days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 21 / 46</h2>
+        <div class="question-box">
+            <p>What was the duration of the London to Suez leg of the journey?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 21 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the duration of the London to Suez leg of the journey?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>7 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 22 / 46</h2>
+        <div class="question-box">
+            <p>What was the mode of transport for the Suez to Bombay leg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 22 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the mode of transport for the Suez to Bombay leg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Steamer.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 23 / 46</h2>
+        <div class="question-box">
+            <p>How many days were allotted for the Hong Kong to Yokohama portion?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 23 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>How many days were allotted for the Hong Kong to Yokohama portion?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>6 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 24 / 46</h2>
+        <div class="question-box">
+            <p>The longest single segment in Fogg's itinerary was the voyage from Yokohama to San Francisco. How long was it?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 24 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The longest single segment in Fogg's itinerary was the voyage from Yokohama to San Francisco. How long was it?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>22 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 25 / 46</h2>
+        <div class="question-box">
+            <p>What was the mode of transport for the San Francisco to New York leg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 25 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the mode of transport for the San Francisco to New York leg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Rail.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 26 / 46</h2>
+        <div class="question-box">
+            <p>What was the duration of the New York to London leg of the journey?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 26 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the duration of the New York to London leg of the journey?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>9 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 27 / 46</h2>
+        <div class="question-box">
+            <p>What was the total time calculated for the entire journey?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 27 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the total time calculated for the entire journey?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>80 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 28 / 46</h2>
+        <div class="question-box">
+            <p>How much did Andrew Stuart initially wager that the journey in 80 days was impossible?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 28 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>How much did Andrew Stuart initially wager that the journey in 80 days was impossible?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Four thousand pounds.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 29 / 46</h2>
+        <div class="question-box">
+            <p>Phileas Fogg accepted the challenge and declared he would risk what amount on the wager?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 29 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Phileas Fogg accepted the challenge and declared he would risk what amount on the wager?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Twenty thousand pounds.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 30 / 46</h2>
+        <div class="question-box">
+            <p>Where did Phileas Fogg have his twenty thousand pounds on deposit?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 30 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Where did Phileas Fogg have his twenty thousand pounds on deposit?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>At Baring's.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 31 / 46</h2>
+        <div class="question-box">
+            <p>Who accepted the twenty-thousand-pound wager against Phileas Fogg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 31 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Who accepted the twenty-thousand-pound wager against Phileas Fogg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Messrs. Stuart, Fallentin, Sullivan, Flanagan, and Ralph.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 32 / 46</h2>
+        <div class="question-box">
+            <p>What was Phileas Fogg's response when Sullivan warned that a single accidental delay would cause him to lose?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 32 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was Phileas Fogg's response when Sullivan warned that a single accidental delay would cause him to lose?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>The unforeseen does not exist.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 33 / 46</h2>
+        <div class="question-box">
+            <p>Phileas Fogg stated, "A true Englishman doesn't joke when he is talking about so serious a thing as a _____".</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 33 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Phileas Fogg stated, "A true Englishman doesn't joke when he is talking about so serious a thing as a _____".</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>wager</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 34 / 46</h2>
+        <div class="question-box">
+            <p>What was the total amount of money at stake in the wager?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 34 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the total amount of money at stake in the wager?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>£20,000 from Fogg plus £4,000 from the other members, totaling £24,000.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 35 / 46</h2>
+        <div class="question-box">
+            <p>At what time was the train for Dover scheduled to leave, which Fogg intended to take?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 35 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>At what time was the train for Dover scheduled to leave, which Fogg intended to take?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>A quarter before nine.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 36 / 46</h2>
+        <div class="question-box">
+            <p>On what date did Phileas Fogg begin his journey?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 36 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>On what date did Phileas Fogg begin his journey?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Wednesday, the second of October.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 37 / 46</h2>
+        <div class="question-box">
+            <p>What was the exact deadline for Phileas Fogg to return to the Reform Club to win his wager?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 37 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the exact deadline for Phileas Fogg to return to the Reform Club to win his wager?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Saturday, the twenty-first of December, at a quarter before nine p.m.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 38 / 46</h2>
+        <div class="question-box">
+            <p>The twenty thousand pounds Phileas Fogg staked represented what portion of his total fortune?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 38 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The twenty thousand pounds Phileas Fogg staked represented what portion of his total fortune?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Half of his fortune.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 39 / 46</h2>
+        <div class="question-box">
+            <p>What did the club members offer to do when the clock struck seven?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 39 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What did the club members offer to do when the clock struck seven?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Suspend the game of whist so that Mr. Fogg might make his preparations for departure.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 40 / 46</h2>
+        <div class="question-box">
+            <p>What was Phileas Fogg's tranquil response to the offer to suspend the game for his preparations?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 40 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was Phileas Fogg's tranquil response to the offer to suspend the game for his preparations?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>I am quite ready now.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 41 / 46</h2>
+        <div class="question-box">
+            <p>In his timetable calculation, what was the duration for the Bombay to Calcutta leg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 41 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>In his timetable calculation, what was the duration for the Bombay to Calcutta leg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>3 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 42 / 46</h2>
+        <div class="question-box">
+            <p>What was the duration for the Calcutta to Hong Kong leg?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 42 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was the duration for the Calcutta to Hong Kong leg?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>13 days.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 43 / 46</h2>
+        <div class="question-box">
+            <p>What mode of transport was used from London to Suez?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 43 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What mode of transport was used from London to Suez?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Rail & Steamer.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 44 / 46</h2>
+        <div class="question-box">
+            <p>What was Fogg's total stake in the wager?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 44 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>What was Fogg's total stake in the wager?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Twenty thousand pounds.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 45 / 46</h2>
+        <div class="question-box">
+            <p>Who was the director of the Bank of England among the whist players?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 45 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>Who was the director of the Bank of England among the whist players?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>Gauthier Ralph.</p>
+        </div>
+    </div>
+    
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Question 46 / 46</h2>
+        <div class="question-box">
+            <p>The total wager between Fogg and the other members was how much?</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 1.1rem; color: var(--ink-secondary);">
+            (Click 'Next' to reveal the answer)
+        </p>
+    </div>
+    <div class="slide question-slide">
+        <h2 style="margin-bottom: 0;">Answer 46 / 46</h2>
+        <div class="question-box" style="background: var(--ink-primary);">
+            <p>The total wager between Fogg and the other members was how much?</p>
+        </div>
+        <div class="answer-box">
+            <span class="answer-label">The Answer</span>
+            <p>£24,000.</p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="thank-you-container">
+            <p style="font-family: var(--font-detail); letter-spacing: 4px; color: var(--accent-gold); margin-bottom: 5px; font-size: 1.2rem;">THE JOURNEY BEGINS</p>
+            <h1 style="color: var(--accent-red); margin-bottom: 10px; font-size: 4rem;">Thank You</h1>
+            <div style="width: 150px; height: 3px; background: var(--ink-primary); margin: 20px auto;"></div>
+            <p style="font-family: var(--font-display); font-size: 1.8rem; color: var(--ink-primary); margin-top: 30px; font-style: italic;">
+                "The unforeseen does not exist."
+            </p>
+            <p style="margin-top: 50px; font-style: normal; color: var(--ink-secondary); font-size: 1.1rem;">
+                Chapter III: The Wager
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- SLIDER LOGIC ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlide) slide.classList.add('active');
+        });
+    }
+
+    function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+            currentSlide++;
+            updateSlides();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlides();
+        }
+    }
+
+    // Keyboard Nav
+    document.addEventListener('keydown', (e) => {
+        if(e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") nextSlide();
+        if(e.key === "ArrowLeft" || e.key === "PageUp") prevSlide();
+    });
+
+    // Initialize
+    updateSlides();
+</script>
+
+</body>
+</html>
